@@ -4,95 +4,727 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Ariyan Emon</title>
+  <title>Aladdin — Do It Yourself</title>
+
+  <meta
+    name="description"
+    content="Aladdin — entrepreneur, perfume enthusiast, watch enthusiast and creator. Do it yourself."
+  >
 
   <style>
+    :root {
+      --bg: #070708;
+      --surface: #101012;
+      --surface-2: #151517;
+      --text: #f5f5f2;
+      --muted: #929296;
+      --line: rgba(255,255,255,0.10);
+      --line-soft: rgba(255,255,255,0.06);
+      --accent: #d8d8d2;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #0b0b0f;
-      color: #ffffff;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
+      background: var(--bg);
+      color: var(--text);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "Segoe UI",
+        sans-serif;
+      overflow-x: hidden;
     }
 
-    .container {
-      max-width: 800px;
-      width: 100%;
-      text-align: center;
-    }
-
-    .tag {
-      display: inline-block;
-      padding: 8px 14px;
-      border: 1px solid #333;
-      border-radius: 50px;
-      color: #aaa;
-      font-size: 14px;
-      margin-bottom: 24px;
-    }
-
-    h1 {
-      font-size: clamp(48px, 12vw, 96px);
-      line-height: 1;
-      margin-bottom: 20px;
-      letter-spacing: -4px;
-    }
-
-    p {
-      color: #aaa;
-      font-size: 18px;
-      line-height: 1.6;
-      max-width: 600px;
-      margin: 0 auto 32px;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 14px 24px;
-      background: #ffffff;
-      color: #000000;
+    a {
+      color: inherit;
       text-decoration: none;
-      border-radius: 10px;
-      font-weight: 600;
-      transition: 0.2s;
     }
 
-    .button:hover {
-      transform: translateY(-2px);
+    /* ---------- NAV ---------- */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 22px 6vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: rgba(7,7,8,0.55);
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .logo {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero {
+      min-height: 100vh;
+      padding: 150px 7vw 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glow {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.035);
+      filter: blur(100px);
+      top: 10%;
+      right: -180px;
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 26px;
+    }
+
+    .hero h1 {
+      font-size: clamp(72px, 15vw, 190px);
+      line-height: 0.82;
+      letter-spacing: -0.075em;
+      font-weight: 700;
+      max-width: 1000px;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,0.32);
+    }
+
+    .hero-bottom {
+      margin-top: 65px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 30px;
+      max-width: 1000px;
+    }
+
+    .hero-description {
+      max-width: 460px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      padding: 15px 22px;
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      font-size: 13px;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .hero-cta:hover {
+      background: white;
+      color: black;
+      transform: translateY(-3px);
+    }
+
+    /* ---------- SECTIONS ---------- */
+
+    section {
+      padding: 120px 7vw;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 35px;
+    }
+
+    .section-title {
+      font-size: clamp(42px, 7vw, 90px);
+      letter-spacing: -0.055em;
+      line-height: 0.95;
+      max-width: 900px;
+    }
+
+    /* ---------- ABOUT ---------- */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+    }
+
+    .about-text {
+      color: var(--muted);
+      font-size: 19px;
+      line-height: 1.8;
+      max-width: 600px;
+    }
+
+    .about-signature {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      color: #777;
+      text-transform: uppercase;
+      text-align: right;
+    }
+
+    /* ---------- VENTURES ---------- */
+
+    .venture-list {
+      margin-top: 65px;
+      border-top: 1px solid var(--line);
+    }
+
+    .venture {
+      padding: 30px 0;
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      align-items: center;
+      gap: 25px;
+      border-bottom: 1px solid var(--line);
+      transition: padding 0.3s ease;
+    }
+
+    .venture:hover {
+      padding-left: 15px;
+      padding-right: 15px;
+      background: rgba(255,255,255,0.018);
+    }
+
+    .venture-number {
+      color: #555;
+      font-size: 12px;
+    }
+
+    .venture-name {
+      font-size: clamp(24px, 4vw, 48px);
+      letter-spacing: -0.04em;
+    }
+
+    .venture-description {
+      color: var(--muted);
+      font-size: 13px;
+      text-align: right;
+    }
+
+    /* ---------- PHILOSOPHY ---------- */
+
+    .philosophy {
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background:
+        radial-gradient(
+          circle at 50% 50%,
+          rgba(255,255,255,0.045),
+          transparent 50%
+        );
+    }
+
+    .philosophy h2 {
+      font-size: clamp(60px, 13vw, 170px);
+      line-height: 0.85;
+      letter-spacing: -0.075em;
+    }
+
+    .philosophy h2 span {
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,0.28);
+    }
+
+    .philosophy p {
+      margin-top: 45px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    /* ---------- INTERESTS ---------- */
+
+    .interest-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 60px;
+    }
+
+    .interest {
+      min-height: 230px;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(
+        145deg,
+        rgba(255,255,255,0.035),
+        rgba(255,255,255,0.008)
+      );
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.35s ease, border-color 0.35s ease;
+    }
+
+    .interest:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,255,255,0.25);
+    }
+
+    .interest-number {
+      color: #555;
+      font-size: 12px;
+    }
+
+    .interest h3 {
+      font-size: 32px;
+      letter-spacing: -0.04em;
+    }
+
+    /* ---------- CONTACT ---------- */
+
+    .contact {
+      min-height: 65vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .contact h2 {
+      font-size: clamp(55px, 11vw, 140px);
+      line-height: 0.88;
+      letter-spacing: -0.07em;
+      max-width: 1000px;
+    }
+
+    .contact h2 span {
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+    }
+
+    .contact-sub {
+      margin-top: 45px;
+      color: var(--muted);
+      max-width: 450px;
+      line-height: 1.7;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      padding: 35px 7vw;
+      border-top: 1px solid var(--line-soft);
+      display: flex;
+      justify-content: space-between;
+      color: #666;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ---------- REVEAL ---------- */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- MOBILE ---------- */
+
+    @media (max-width: 700px) {
+
+      nav {
+        padding: 18px 22px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 130px 22px 60px;
+      }
+
+      .hero h1 {
+        font-size: clamp(68px, 21vw, 120px);
+      }
+
+      .hero-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 50px;
+      }
+
+      .hero-description {
+        font-size: 16px;
+      }
+
+      section {
+        padding: 90px 22px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .about-signature {
+        text-align: left;
+      }
+
+      .venture {
+        grid-template-columns: 45px 1fr;
+      }
+
+      .venture-description {
+        grid-column: 2;
+        text-align: left;
+      }
+
+      .interest-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .interest {
+        min-height: 190px;
+      }
+
+      .philosophy {
+        min-height: 65vh;
+      }
+
+      footer {
+        padding: 28px 22px;
+        flex-direction: column;
+        gap: 12px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <main class="container">
+  <!-- NAVIGATION -->
 
-    <div class="tag">
-      Personal Website
+  <nav>
+    <a href="#" class="logo">ALADDIN</a>
+
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#ventures">Ventures</a>
+      <a href="#interests">Interests</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+
+  <header class="hero">
+
+    <div class="glow"></div>
+
+    <div class="eyebrow reveal">
+      AladdinSir · Personal Brand
     </div>
 
-    <h1>Ariyan Emon</h1>
+    <h1 class="reveal">
+      ALADDIN
+      <span>DIY.</span>
+    </h1>
 
-    <p>
-      Welcome to my personal website.
-      This is where I'll share my journey, projects,
-      interests and work.
+    <div class="hero-bottom reveal">
+
+      <p class="hero-description">
+        Entrepreneur, enthusiast and creator.
+        Building my own path through business,
+        luxury, and the things I genuinely enjoy.
+      </p>
+
+      <a href="#about" class="hero-cta">
+        Explore My Journey ↓
+      </a>
+
+    </div>
+
+  </header>
+
+
+  <!-- ABOUT -->
+
+  <section id="about">
+
+    <div class="section-label reveal">
+      01 / About
+    </div>
+
+    <div class="about-grid">
+
+      <h2 class="section-title reveal">
+        Doing things<br>
+        my own way.
+      </h2>
+
+      <div>
+
+        <p class="about-text reveal">
+          A perfume enthusiast, watch enthusiast,
+          entrepreneur, and someone who believes in
+          learning by doing.
+          <br><br>
+          From fragrances and timepieces to luxury goods,
+          I enjoy discovering, building, experimenting
+          and creating things that feel genuinely mine.
+        </p>
+
+        <div class="about-signature reveal">
+          ALADDIN
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- VENTURES -->
+
+  <section id="ventures">
+
+    <div class="section-label reveal">
+      02 / Ventures
+    </div>
+
+    <h2 class="section-title reveal">
+      What I'm<br>
+      building.
+    </h2>
+
+    <div class="venture-list">
+
+      <div class="venture reveal">
+        <span class="venture-number">01</span>
+
+        <div class="venture-name">
+          Decant
+        </div>
+
+        <div class="venture-description">
+          Fragrance discovery
+        </div>
+      </div>
+
+
+      <div class="venture reveal">
+        <span class="venture-number">02</span>
+
+        <div class="venture-name">
+          Watches
+        </div>
+
+        <div class="venture-description">
+          Timepieces & horology
+        </div>
+      </div>
+
+
+      <div class="venture reveal">
+        <span class="venture-number">03</span>
+
+        <div class="venture-name">
+          Perfume
+        </div>
+
+        <div class="venture-description">
+          Fragrance & collecting
+        </div>
+      </div>
+
+
+      <div class="venture reveal">
+        <span class="venture-number">04</span>
+
+        <div class="venture-name">
+          Luxury Goods
+        </div>
+
+        <div class="venture-description">
+          Selected premium products
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PHILOSOPHY -->
+
+  <section class="philosophy">
+
+    <div class="section-label reveal">
+      03 / Philosophy
+    </div>
+
+    <h2 class="reveal">
+      DO IT<br>
+      <span>YOURSELF.</span>
+    </h2>
+
+    <p class="reveal">
+      Learn it. Build it. Own it.
     </p>
 
-    <a href="mailto:your@email.com" class="button">
-      Get in Touch
-    </a>
+  </section>
 
-  </main>
+
+  <!-- INTERESTS -->
+
+  <section id="interests">
+
+    <div class="section-label reveal">
+      04 / Beyond Business
+    </div>
+
+    <h2 class="section-title reveal">
+      Things I<br>
+      genuinely enjoy.
+    </h2>
+
+    <div class="interest-grid">
+
+      <div class="interest reveal">
+        <span class="interest-number">01</span>
+        <h3>Photography</h3>
+      </div>
+
+
+      <div class="interest reveal">
+        <span class="interest-number">02</span>
+        <h3>Watches</h3>
+      </div>
+
+
+      <div class="interest reveal">
+        <span class="interest-number">03</span>
+        <h3>Perfumes</h3>
+      </div>
+
+
+      <div class="interest reveal">
+        <span class="interest-number">04</span>
+        <h3>Luxury & Design</h3>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section id="contact" class="contact">
+
+    <div class="section-label reveal">
+      05 / Contact
+    </div>
+
+    <h2 class="reveal">
+      Let's build<br>
+      <span>something.</span>
+    </h2>
+
+    <p class="contact-sub reveal">
+      More details and contact information
+      coming soon.
+    </p>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <span>© 2026 AladdinSir</span>
+
+    <span>Do It Yourself.</span>
+
+  </footer>
+
+
+  <!-- ANIMATION SCRIPT -->
+
+  <script>
+    const elements = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      {
+        threshold: 0.12
+      }
+    );
+
+    elements.forEach((element) => {
+      observer.observe(element);
+    });
+  </script>
 
 </body>
 </html>
